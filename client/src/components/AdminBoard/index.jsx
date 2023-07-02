@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../../contexts/EthContext"
 import { Center, Card, CardBody, Input, Heading, Button } from '@chakra-ui/react'
+import Proposals from "../Proposals"
+import Results from "../Results";
 import Voters from "../Voters"
 
 function AdminBoard() {
@@ -55,7 +57,7 @@ function AdminBoard() {
 
     return (
         <Center>
-            <Card w="80%" mt='2'>
+            <Card w={["90%", "80%", "70%", "50%", "40%"]} mt='2'>
             {currentStatus === 0 && (
                 <>
                 <CardBody>
@@ -76,6 +78,8 @@ function AdminBoard() {
                 <CardBody>
                     <Heading size='md' mb='6' >Admin Board - Proposal Registration in Progress</Heading>
                 </CardBody>
+                <Voters/>
+                <Proposals/>
                 <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                         End Proposal Registration
                 </Button>
@@ -86,6 +90,8 @@ function AdminBoard() {
                     <CardBody>
                         <Heading size='md' mb='6' >Admin Board - Proposal Registration ended</Heading>
                     </CardBody>
+                    <Voters/>
+                    <Proposals/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             Start Voting Session
                     </Button>
@@ -96,8 +102,10 @@ function AdminBoard() {
                     <CardBody>
                         <Heading size='md' mb='6' >Admin Board - Voting Session in progress</Heading>
                     </CardBody>
+                    <Voters/>
+                    <Proposals/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
-                            End Voting Session 
+                            End Voting Session and Generate Results
                     </Button>
                 </>
              )}
@@ -106,14 +114,18 @@ function AdminBoard() {
                     <CardBody>
                         <Heading size='md' mb='6' >Admin Board - Voting Session ended</Heading>
                     </CardBody>
-                    <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
+                    <Voters/>
+                    <Proposals/>
+                    {/* <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             Generate Results
-                    </Button>
+                    </Button> */}
+                    <Results/>
+
                 </>
              )}
             </Card>
         </Center>
     )
 }
-  
+
 export default AdminBoard

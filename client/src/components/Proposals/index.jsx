@@ -40,7 +40,7 @@ function Proposals() {
 
     return (
         <>
-            <Heading size='sm' ml='6'>Proposals List</Heading>
+            <Heading size='sm' ml='6' mt='3'>Proposals</Heading>
             <TableContainer>
             <Table variant='striped'>
                 <Thead>
@@ -64,5 +64,5 @@ function Proposals() {
         </>
     );
 }
-  
+
 export default Proposals

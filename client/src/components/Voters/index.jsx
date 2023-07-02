@@ -33,7 +33,7 @@ function Voters() {
 
   return (
     <>
-        <Heading size='sm' mt='8' ml='6'>Voters List</Heading>
+        <Heading size='sm' mt='8' ml='6'>Voters</Heading>
         <TableContainer mt='4'>
         <Table variant='striped'>
             <Thead>
