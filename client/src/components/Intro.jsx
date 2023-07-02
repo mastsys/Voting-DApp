@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../contexts/EthContext"
-import { Center, Card, Text, CardBody } from '@chakra-ui/react'
+import UserBoard from "../components/UserBoard"
+import AdminBoard from "../components/AdminBoard"
 
 function User() {
   const {
-    state: { accounts },
+    state: { accounts, contract },
   } = useEth();
-  const [account, setAccount] = useState("");
+
+  const [account, setAccount] = useState("")
+  const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
     async function getAccount() {
@@ -15,18 +18,28 @@ function User() {
       } else {
 
       }
-    };
+    }
+    async function checkAdmin() {
+      const owner = await contract.methods.owner().call()
+          if(accounts[0] === owner) {
+              setIsAdmin(true)
+          } else {
+              setIsAdmin(false)
+          }
+    }
+    checkAdmin();
     getAccount();
-  }, [accounts]);
+  }, [accounts, contract]);
 
   return (
-    <Center>
-        <Card w="80%" mt='2'>
-                <CardBody >
-                    <Text>Your address is : {account} </Text>
-                </CardBody>
-        </Card>
-    </Center>
+    <>
+      {isAdmin && (
+        <AdminBoard />
+      )}
+      {!isAdmin && (
+        <UserBoard />
+      )}
+    </>
   );
 }
 

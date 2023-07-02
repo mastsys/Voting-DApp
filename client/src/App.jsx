@@ -13,8 +13,6 @@ function App() {
         <Header />
         <hr />
         <Intro />
-        <AdminBoard />
-        <UserBoard />
       </div>
     </EthProvider>
   </ChakraProvider>

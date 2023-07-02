@@ -6,28 +6,17 @@ import Voters from "../Voters"
 function AdminBoard() {
     const {
         state: { accounts, artifact, contract },
-      } = useEth();
+    } = useEth();
 
-    const [isAdmin, setIsAdmin] = useState(false)
     const [currentStatus, setCurrentStatus] = useState(0)
     const [addressToAdd, setAddressToAdd] = useState('')
-    const [checkResult, setCheckResult] = useState(false)
 
     useEffect(() => {
-        async function checkAdmin() {
-        const owner = await contract.methods.owner().call()
-            if(accounts[0] === owner) {
-                setIsAdmin(true)
-            } else {
-                setIsAdmin(false)
-            }
-        }
         async function checkStatus() {
             const status = await contract.methods.workflowStatus().call();
             setCurrentStatus(Number(status))
         }
         checkStatus();
-        checkAdmin();
     }, [accounts, artifact, contract]);
 
     const handleChange = (event) => {
@@ -39,6 +28,7 @@ function AdminBoard() {
         if (addressToAdd !== "") {
             try {
                 await contract.methods.addVoter(addressToAdd).send({ from: accounts[0] })
+                window.location.reload();
             } catch(e) {
                 alert("Please enter a valid address")
             }
@@ -60,12 +50,10 @@ function AdminBoard() {
             await contract.methods.endVotingSession().send({ from: accounts[0] });
             setCurrentStatus(4);
         } else if (currentStatus === 4) {
-            setCheckResult(true) 
         }
     };
 
     return (
-        isAdmin && (
         <Center>
             <Card w="80%" mt='2'>
             {currentStatus === 0 && (
@@ -126,7 +114,6 @@ function AdminBoard() {
             </Card>
         </Center>
     )
-    );
 }
   
 export default AdminBoard
