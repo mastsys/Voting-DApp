@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useEth } from "../../contexts/EthContext"
 import { Center, Card, CardBody, Input, Heading, Button } from '@chakra-ui/react'
 import Proposals from "../Proposals"
+import Results from "../Results";
 import Voters from "../Voters"
 
 function AdminBoard() {
@@ -118,6 +119,8 @@ function AdminBoard() {
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             Generate Results
                     </Button>
+                    <Results/>
+
                 </>
              )}
             </Card>

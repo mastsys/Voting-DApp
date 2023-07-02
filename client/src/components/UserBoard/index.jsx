@@ -3,7 +3,7 @@ import { useEth } from "../../contexts/EthContext"
 import { Center, Card, CardBody, Input, Heading, Button, Text } from '@chakra-ui/react'
 import Proposals from "../Proposals"
 import VoteSession from "../VoteSession"
-//import Results from "../Results";
+import Results from "../Results";
 
 function UserBoard() {
     const {
@@ -84,6 +84,7 @@ function UserBoard() {
                     <Heading size='sm'>The voting session has ended. Wait for the results. </Heading>
                   </CardBody>
                   <Proposals/>
+                  <Results/>
                 </>
               )}
             </Card>
