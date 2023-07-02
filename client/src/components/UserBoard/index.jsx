@@ -16,7 +16,7 @@ function UserBoard() {
 
     const [currentStatus, setCurrentStatus] = useState(0);
 
-    
+
     useEffect(() => {
         async function checkVoter() {
             try {
@@ -54,7 +54,7 @@ function UserBoard() {
     return (
         isVoter && (
             <Center>
-            <Card w="80%" mt='2'>
+            <Card w={["90%", "80%", "70%", "50%", "40%"]} mt='2' >
                 <CardBody>
                     <Heading size='md' mb='6' >Voter Board</Heading>
                     {currentStatus === 1 && (
@@ -79,7 +79,7 @@ function UserBoard() {
             )}
 
             {currentStatus === 3 && voter.hasVoted && (
-                <>    
+                <>
                     <CardBody >
                         <Heading size='sm'>The voting is in progress and you have already voted</Heading>
                     </CardBody>
@@ -88,7 +88,7 @@ function UserBoard() {
 
             {currentStatus === 4 && (
                 <>
-                    
+
                 </>
              )}
             </Card>
@@ -97,5 +97,5 @@ function UserBoard() {
         )
     );
 }
-  
+
 export default UserBoard;

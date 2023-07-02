@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../../contexts/EthContext"
 import { Center, Card, CardBody, Input, Heading, Button } from '@chakra-ui/react'
+import Proposals from "../Proposals"
 import Voters from "../Voters"
 
 function AdminBoard() {
@@ -55,7 +56,7 @@ function AdminBoard() {
 
     return (
         <Center>
-            <Card w="80%" mt='2'>
+            <Card w={["90%", "80%", "70%", "50%", "40%"]} mt='2'>
             {currentStatus === 0 && (
                 <>
                 <CardBody>
@@ -76,6 +77,7 @@ function AdminBoard() {
                 <CardBody>
                     <Heading size='md' mb='6' >Admin Board - Proposal Registration in Progress</Heading>
                 </CardBody>
+                <Proposals/>
                 <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                         End Proposal Registration
                 </Button>
@@ -86,6 +88,7 @@ function AdminBoard() {
                     <CardBody>
                         <Heading size='md' mb='6' >Admin Board - Proposal Registration ended</Heading>
                     </CardBody>
+                    <Proposals/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             Start Voting Session
                     </Button>
@@ -97,7 +100,7 @@ function AdminBoard() {
                         <Heading size='md' mb='6' >Admin Board - Voting Session in progress</Heading>
                     </CardBody>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
-                            End Voting Session 
+                            End Voting Session
                     </Button>
                 </>
              )}
@@ -115,5 +118,5 @@ function AdminBoard() {
         </Center>
     )
 }
-  
+
 export default AdminBoard
