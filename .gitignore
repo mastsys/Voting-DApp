@@ -11,7 +11,10 @@ client/src/contracts
 client/*/src/contracts
 
 # Testing
-coverage
+truffle/coverage
+truffle/artifacts
+truffle/cache
+truffle/coverage.json
 
 # Env
 .env

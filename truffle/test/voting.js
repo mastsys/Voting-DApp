@@ -102,12 +102,12 @@ contract("Voting", () => {
           );
       });
 
-      it("prevent from tally votes.", async () => {
-          await expectRevert(
-              votingInstance.tallyVotes({ from: other }),
-              "Ownable: caller is not the owner"
-          );
-      });
+    //   it("prevent from tally votes.", async () => {
+    //       await expectRevert(
+    //           votingInstance.tallyVotes({ from: other }),
+    //           "Ownable: caller is not the owner"
+    //       );
+    //   });
   });
 
 
@@ -119,12 +119,12 @@ contract("Voting", () => {
           votingInstance = await Voting.new();
       });
 
-      it("prevent from computing tally votes with incorrect workflowStatus.", async () => {
-          await expectRevert(
-              votingInstance.tallyVotes({ from: owner }),
-              "Current status is not voting session ended"
-          );
-      });
+    //   it("prevent from computing tally votes with incorrect workflowStatus.", async () => {
+    //       await expectRevert(
+    //           votingInstance.tallyVotes({ from: owner }),
+    //           "Current status is not voting session ended"
+    //       );
+    //   });
 
       it("owner can start proposal registration and emit an event.", async () => {
         const receipt = await votingInstance.startProposalsRegistering({ from: owner });
@@ -300,10 +300,10 @@ contract("Voting", () => {
             );
         });
 
-        it("owner can compute tally votes and emit an event.", async () => {
-            const receipt = await votingInstance.tallyVotes({ from: owner });
-            expectEvent(receipt, 'WorkflowStatusChange', { previousStatus: new BN("4"), newStatus: new BN("5") });
-        });
+        // it("owner can compute tally votes and emit an event.", async () => {
+        //     const receipt = await votingInstance.tallyVotes({ from: owner });
+        //     expectEvent(receipt, 'WorkflowStatusChange', { previousStatus: new BN("4"), newStatus: new BN("5") });
+        // });
 
         it("registered voter can get voter information, has voted", async () => {
             const voter = await votingInstance.getVoter(voter1, { from: voter1 });

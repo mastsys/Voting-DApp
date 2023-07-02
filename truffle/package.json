@@ -7,6 +7,12 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.9.2",
+    "@openzeppelin/test-helpers": "^0.5.16",
     "@truffle/hdwallet-provider": "^2.1.7"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-truffle5": "^2.0.7",
+    "ganache-cli": "^6.12.2",
+    "solidity-coverage": "^0.8.3"
   }
 }
