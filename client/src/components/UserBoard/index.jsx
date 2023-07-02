@@ -64,6 +64,7 @@ function UserBoard() {
                     <Button colorScheme='teal' size='xs' mt='2' onClick={handleClick}>
                       Add Proposal
                     </Button>
+                    <Proposals />
                   </>
                 )}
               </CardBody>
