@@ -105,7 +105,7 @@ function AdminBoard() {
                     <Voters/>
                     <Proposals/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
-                            End Voting Session
+                            End Voting Session and Generate Results
                     </Button>
                 </>
              )}
@@ -116,9 +116,9 @@ function AdminBoard() {
                     </CardBody>
                     <Voters/>
                     <Proposals/>
-                    <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
+                    {/* <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             Generate Results
-                    </Button>
+                    </Button> */}
                     <Results/>
 
                 </>
