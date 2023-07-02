@@ -77,6 +77,7 @@ function AdminBoard() {
                 <CardBody>
                     <Heading size='md' mb='6' >Admin Board - Proposal Registration in Progress</Heading>
                 </CardBody>
+                <Voters/>
                 <Proposals/>
                 <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                         End Proposal Registration
@@ -88,6 +89,7 @@ function AdminBoard() {
                     <CardBody>
                         <Heading size='md' mb='6' >Admin Board - Proposal Registration ended</Heading>
                     </CardBody>
+                    <Voters/>
                     <Proposals/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             Start Voting Session
@@ -99,6 +101,8 @@ function AdminBoard() {
                     <CardBody>
                         <Heading size='md' mb='6' >Admin Board - Voting Session in progress</Heading>
                     </CardBody>
+                    <Voters/>
+                    <Proposals/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             End Voting Session
                     </Button>
@@ -109,6 +113,8 @@ function AdminBoard() {
                     <CardBody>
                         <Heading size='md' mb='6' >Admin Board - Voting Session ended</Heading>
                     </CardBody>
+                    <Voters/>
+                    <Proposals/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             Generate Results
                     </Button>

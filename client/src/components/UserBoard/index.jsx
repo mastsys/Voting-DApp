@@ -88,7 +88,10 @@ function UserBoard() {
 
             {currentStatus === 4 && (
                 <>
-
+                    <CardBody >
+                        <Heading size='sm'>The voting session has ended. Wait for the results. </Heading>
+                    </CardBody>
+                    <Proposals/>
                 </>
              )}
             </Card>

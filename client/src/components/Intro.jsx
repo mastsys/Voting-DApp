@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../contexts/EthContext"
+import { Text } from '@chakra-ui/react'
 import UserBoard from "../components/UserBoard"
 import AdminBoard from "../components/AdminBoard"
 
@@ -33,6 +34,7 @@ function User() {
 
   return (
     <>
+      <Text>Connected: {account} </Text>
       {isAdmin && (
         <AdminBoard />
       )}
