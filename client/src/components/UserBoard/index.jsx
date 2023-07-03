@@ -13,8 +13,8 @@ function UserBoard() {
     const [isVoter, setIsVoter] = useState(false);
     const [voter, setVoter] = useState(0);
     const [proposalToAdd, setProposalToAdd] = useState();
-
     const [currentStatus, setCurrentStatus] = useState(0);
+    const [userAddress, setUserAddress] = useState('');
 
 
     useEffect(() => {
@@ -45,6 +45,7 @@ function UserBoard() {
         if (proposalToAdd !== "") {
             try {
                 await contract.methods.addProposal(proposalToAdd).send({ from: accounts[0] })
+                window.location.reload()
             } catch(e) {
                 console.log(e)
             }
@@ -52,50 +53,73 @@ function UserBoard() {
     };
 
     return (
-      <>
-        {isVoter ? (
           <Center>
-            <Card w={["90%", "80%", "70%", "50%", "40%"]} mt='2' >
+            <Card w={["90%", "80%", "70%", "60%", "40%"]} mt='2' >
               <CardBody>
-                <Heading size='md' mb='6' >Voter Board</Heading>
-                {currentStatus === 1 && (
-                  <>
-                    <Input placeholder='Proposal Description' name='proposal' onChange={handleChange}/>
-                    <Button colorScheme='teal' size='xs' mt='2' onClick={handleClick}>
-                      Add Proposal
-                    </Button>
-                    <Proposals />
-                  </>
-                )}
+                  {currentStatus === 0 && isVoter && (
+                      <>
+                      <Heading size='md' mb='6' >Voter Board</Heading>
+                      <CardBody >
+                          <Heading size='sm'>You have been registered by the administrator</Heading>
+                          <Heading size='sm'>Please wait, the administrator is still registering the voters</Heading>
+                      </CardBody>
+                      </>
+                  )}
+                  {!isVoter && (
+                      <>
+                      <Heading size='md' mb='6'></Heading>
+                      <CardBody >
+                          <Heading size='sm'>You are not allowed to participate</Heading>
+                          <Heading size='sm'>Ask the administrator to add you to the voters list for the next session</Heading>
+                      </CardBody>
+                      </>
+                  )}
+                  {currentStatus === 1 && isVoter && (
+                      <>
+                          <Input placeholder='Proposal Description' name='proposal' onChange={handleChange}/>
+                          <Button colorScheme='teal' size='xs' mt='2' onClick={handleClick}>
+                              Add Proposal
+                          </Button>
+                          <Proposals />
+                      </>
+                  )}
               </CardBody>
-
-              {currentStatus === 2 && <Proposals />}
-
-              {currentStatus === 3 && !voter.hasVoted && <VoteSession />}
-
-              {currentStatus === 3 && voter.hasVoted && (
-                <CardBody >
-                  <Heading size='sm'>The voting is in progress and you have already voted</Heading>
-                </CardBody>
+              {currentStatus === 2 && isVoter && (
+                  <>
+                  <Heading size='sm' ml='2'>Proposals Registration ended</Heading>
+                  <Heading size='sm' ml='2'>Please wait, the administrator will start the vote session soon</Heading>
+                      <Proposals/>
+                  </>
               )}
-
-              {currentStatus === 4 && (
-                <>
-                  <CardBody >
-                    <Heading size='sm'>The voting session has ended. Wait for the results. </Heading>
-                  </CardBody>
-                  <Proposals/>
-                  <Results/>
-                </>
+              {currentStatus === 3 && isVoter && !voter.hasVoted && (
+                  <>
+                      <VoteSession/>
+                  </>
               )}
-            </Card>
-          </Center>
-        ) : (
-          <Center>
-            <Text>You are not registered as a voter.</Text>
-          </Center>
-        )}
-      </>
+              {currentStatus === 3 && isVoter && voter.hasVoted && (
+                  <>    
+                      <CardBody >
+                          <Heading size='sm'>The voting is still in progress and you have already voted</Heading>
+                      </CardBody>
+                  </>
+              )}
+              {currentStatus === 4 && isVoter && (
+                  <>
+                      <CardBody >
+                          <Heading size='sm'>The voting session has ended, please wait for the vote tallying.</Heading>
+                      </CardBody>
+                  </>
+              )}
+              {currentStatus === 5 && isVoter &&(
+                  <>
+                      <CardBody >
+                          <Heading size='sm'>Vote Results</Heading>
+                          <Results/>
+                      </CardBody>
+                  </>
+              )}
+          </Card>
+      </Center>
     );
 }
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../../contexts/EthContext"
-import { Center, Card, CardBody, Input, Heading, Button } from '@chakra-ui/react'
+import { Center, Card, CardBody, Input, Heading, Button, Box } from '@chakra-ui/react'
 import Proposals from "../Proposals"
-import Results from "../Results";
+import Results from "../Results"
 import Voters from "../Voters"
 
 function AdminBoard() {
@@ -50,18 +50,22 @@ function AdminBoard() {
             setCurrentStatus(3);
         } else if (currentStatus === 3) {
             await contract.methods.endVotingSession().send({ from: accounts[0] });
+            window.location.reload();
             setCurrentStatus(4);
         } else if (currentStatus === 4) {
+            await contract.methods.tallyVotes().send({ from: accounts[0] });
+            window.location.reload();
+            setCurrentStatus(5);
         }
     };
 
     return (
         <Center>
-            <Card w={["90%", "80%", "70%", "50%", "40%"]} mt='2'>
+            <Card w={["90%", "80%", "70%", "60%", "40%"]} mt='2'>
             {currentStatus === 0 && (
                 <>
                 <CardBody>
-                    <Heading size='md' mb='6' >Admin Board</Heading>
+                    <Heading size='md' mb='3' >Admin Board</Heading>
                     <Input mt='4' placeholder='Voter address' name='addressToAdd' onChange={handleChange}/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={handleClick}>
                         Add Voter
@@ -76,10 +80,9 @@ function AdminBoard() {
             {currentStatus === 1 && (
                 <>
                 <CardBody>
-                    <Heading size='md' mb='6' >Admin Board - Proposal Registration in Progress</Heading>
+                    <Heading size='md' mb='3' >Admin Board - Proposal Registration in Progress</Heading>
                 </CardBody>
                 <Voters/>
-                <Proposals/>
                 <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                         End Proposal Registration
                 </Button>
@@ -91,7 +94,6 @@ function AdminBoard() {
                         <Heading size='md' mb='6' >Admin Board - Proposal Registration ended</Heading>
                     </CardBody>
                     <Voters/>
-                    <Proposals/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             Start Voting Session
                     </Button>
@@ -103,9 +105,8 @@ function AdminBoard() {
                         <Heading size='md' mb='6' >Admin Board - Voting Session in progress</Heading>
                     </CardBody>
                     <Voters/>
-                    <Proposals/>
                     <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
-                            End Voting Session and Generate Results
+                            End Voting Session
                     </Button>
                 </>
              )}
@@ -114,13 +115,19 @@ function AdminBoard() {
                     <CardBody>
                         <Heading size='md' mb='6' >Admin Board - Voting Session ended</Heading>
                     </CardBody>
-                    <Voters/>
-                    <Proposals/>
-                    {/* <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
+                    <Button colorScheme='teal' size='xs' mt='2' onClick={changeStatus}>
                             Generate Results
-                    </Button> */}
+                    </Button>
+                </>
+             )}
+             {currentStatus === 5 && (
+                <>
+                    <CardBody>
+                        <Heading size='md' mb='6' >Admin Board - Voting Session tallied</Heading>
+                    </CardBody>
+                    {/* <Voters/> */}
+                    {/* <Proposals/> */}
                     <Results/>
-
                 </>
              )}
             </Card>

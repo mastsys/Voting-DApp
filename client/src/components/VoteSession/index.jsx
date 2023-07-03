@@ -41,6 +41,7 @@ function VoteSession() {
 
     const handleVoteClick = async(proposalID) => {
         await contract.methods.setVote(parseInt(proposalID)).send({ from: accounts[0] })
+        window.location.reload()
     }
 
     return (

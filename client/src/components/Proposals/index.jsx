@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../../contexts/EthContext"
-import { Heading } from '@chakra-ui/react'
+import { Heading, Box } from '@chakra-ui/react'
 import {
     Table,
     Thead,
@@ -9,7 +9,15 @@ import {
     Th,
     Td,
     TableContainer,
-  } from '@chakra-ui/react'
+} from '@chakra-ui/react'
+
+import {
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+} from '@chakra-ui/react'
 
 function Proposals() {
     const {
@@ -40,7 +48,17 @@ function Proposals() {
 
     return (
         <>
-            <Heading size='sm' ml='6' mt='3'>Proposals</Heading>
+            <Accordion mt='4' allowToggle>
+        <AccordionItem>
+            <h2>
+            <AccordionButton>
+                <Box as="span" flex='1' textAlign='left'>
+                Proposals list
+                </Box>
+                <AccordionIcon />
+            </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
             <TableContainer>
             <Table variant='striped'>
                 <Thead>
@@ -61,6 +79,9 @@ function Proposals() {
             </Tbody>
             </Table>
             </TableContainer>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
         </>
     );
 }
