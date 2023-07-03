@@ -1,7 +1,36 @@
-# React client
+# Voting DApp
 
-This react project is unopinionated with only `web3.js` as an added dependency, so nothing stands in your way.
+This is a decentralized application (DApp) called "Voting DApp"
 
-## Getting started
+Features: 
+- Registration of a whitelist of voters.
+- Administrator can start the proposal registration session.
+- Registered voters can submit their proposals.
+- Administrator can end the proposal registration session.
+- Administrator can start the voting session.
+- Registered voters can vote for their preferred proposals.
+- Administrator can end the voting session.
+- Administrator can tally the votes.
+- Everyone can view the results.
 
-Run `npm start` to start the dev server, and `npm build` to create a production build.
+## Technologies Used
+
+- Truffle
+- React
+- Hardhat
+
+## Installation
+
+To install the dependencies, perform the following steps:
+
+1. `npm install` in ./truffle
+2. `npm install` in ./client
+
+## Usage
+
+`npm start` in ./client
+
+`truffle test` in ./truffle  To run unit tests 
+
+`npx hardhat coverage` --network To generate a test coverage report
+
