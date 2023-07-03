@@ -1,3 +1,5 @@
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+
 module.exports = {
   plugins: ["solidity-coverage"],
   contracts_build_directory: "../client/src/contracts",
@@ -5,8 +7,12 @@ module.exports = {
     development: {
      host: "127.0.0.1",    
      port: 8545,           
-     network_id: "*",      
+     network_id: "59140",      
     },
+    goerli:{
+      provider : function() {return new HDWalletProvider({mnemonic:{phrase:`${process.env.MNEMONIC}`},providerOrUrl:`https://linea-goerli.infura.io/v3/${process.env.INFURA_ID}`})},
+      network_id:5,
+     },
   },
 
   mocha: {
