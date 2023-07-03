@@ -4,10 +4,12 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 /// @title A Decentralized Voting Contract
+/// @author Y.Sabir M.Sanchez
 /// @notice This contract allows for decentralized voting
 /// @dev Inherits the Ownable contract from OpenZeppelin
 contract Voting is Ownable {
 
+    /// @notice Winning Proposal id
     uint public winningProposalID;
 
     /// @notice Represents a registered voter with their vote status and choice
@@ -23,6 +25,13 @@ contract Voting is Ownable {
         uint voteCount;
     }
 
+    /// @notice Workflow Status
+    /// @param RegisteringVoters Registering Voters
+    /// @param ProposalsRegistrationStarted Proposals Registration Started
+    /// @param ProposalsRegistrationEnded Proposals Registration Ended
+    /// @param VotingSessionStarted Voting session Started
+    /// @param VotingSessionEnded Voting session Ended
+    /// @param VotesTallied Votes Tallied
     enum  WorkflowStatus {
         RegisteringVoters,
         ProposalsRegistrationStarted,
@@ -32,7 +41,9 @@ contract Voting is Ownable {
         VotesTallied
     }
 
+    /// @notice Workflow Status
     WorkflowStatus public workflowStatus;
+    
     Proposal[] proposalsArray;
     mapping (address => Voter) voters;
 
@@ -157,7 +168,8 @@ contract Voting is Ownable {
         emit WorkflowStatusChange(WorkflowStatus.VotingSessionStarted, WorkflowStatus.VotingSessionEnded);
     }
 
-
+    /// @notice Tally votes
+    /// @dev Only the contract owner can call this function, and only if the current phase is VotingSessionStarted
    function tallyVotes() external onlyOwner {
         require(workflowStatus == WorkflowStatus.VotingSessionEnded, "Current status is not voting session ended");
         workflowStatus = WorkflowStatus.VotesTallied;
