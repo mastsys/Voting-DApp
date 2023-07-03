@@ -6,7 +6,6 @@ function Footer() {
     <Box
       bg="gray.200"
       p={4}
-      position="fixed"
       bottom={0}
       left={0}
       width="100%"
