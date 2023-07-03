@@ -13,6 +13,10 @@ Features:
 - Administrator can tally the votes.
 - Everyone can view the results.
 
+## Useful Links
+- Demo: https://www.loom.com/share/e54ff86d110148c6aa1ef4534686a671
+- Dapp: https://voting-d-p0iikzru7-mastsys.vercel.app/
+
 ## Technologies Used
 
 - Truffle
