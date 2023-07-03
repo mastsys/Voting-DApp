@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../../contexts/EthContext"
-import { Heading, Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import {
     Table,
     Thead,

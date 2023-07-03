@@ -1,26 +1,16 @@
-import { useState, useEffect } from "react";
-import { useEth } from "../../contexts/EthContext";
-import { Heading, Text } from '@chakra-ui/react';
+import { useState, useEffect } from "react"
+import { useEth } from "../../contexts/EthContext"
+import { Heading } from '@chakra-ui/react'
 
 import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
     Tr,
     Th,
     Td,
-    TableCaption,
     TableContainer,
   } from '@chakra-ui/react'
-
-  import {
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
-} from '@chakra-ui/react'  
 
 function WinningProposal() {
     const {
@@ -130,7 +120,7 @@ function WinningProposal() {
             </Tbody>
             </Table>
             </TableContainer>
-            <Heading size='sm' ml='6' mt='4' textAlign="center">Detailed votes</Heading>
+            <Heading size='sm' ml='6' mt='4' textAlign="center">Detailed votes by voter</Heading>
             <TableContainer>
             <Table variant='striped'>
                 <Thead>

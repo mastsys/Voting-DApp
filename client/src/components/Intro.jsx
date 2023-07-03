@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { Button, Text } from "@chakra-ui/react";
-import Web3Modal from "web3modal";
-import Web3 from "web3";
-import { useEth } from "../contexts/EthContext";
-import UserBoard from "../components/UserBoard";
-import AdminBoard from "../components/AdminBoard";
+import { useState, useEffect } from "react"
+import { Button, Heading } from "@chakra-ui/react"
+import Web3Modal from "web3modal"
+import Web3 from "web3"
+import { useEth } from "../contexts/EthContext"
+import UserBoard from "../components/UserBoard"
+import AdminBoard from "../components/AdminBoard"
 
 // Web3Modal setup
 const providerOptions = {}; // Optional. Add supported wallets here.
@@ -57,7 +57,7 @@ function User() {
       {account ? (
         <>
           <Button onClick={disconnectWallet}>Disconnect Wallet</Button>
-          <Text>Connected: {account}</Text>
+          <Heading fontSize='sm' textAlign="center">Connected Address : {account}</Heading>
           {isAdmin && <AdminBoard />}
           {!isAdmin && <UserBoard />}
         </>

@@ -1,26 +1,24 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../../contexts/EthContext"
-import { Center, Card, CardBody, Input, Heading, Button, Text } from '@chakra-ui/react'
+import { Center, Card, CardBody, Input, Heading, Button } from '@chakra-ui/react'
 import Proposals from "../Proposals"
 import VoteSession from "../VoteSession"
-import Results from "../Results";
+import Results from "../Results"
 
 function UserBoard() {
     const {
         state: { accounts, artifact, contract },
       } = useEth();
 
-    const [isVoter, setIsVoter] = useState(false);
-    const [voter, setVoter] = useState(0);
-    const [proposalToAdd, setProposalToAdd] = useState();
-    const [currentStatus, setCurrentStatus] = useState(0);
-    const [userAddress, setUserAddress] = useState('');
-
+    const [isVoter, setIsVoter] = useState(false)
+    const [voter, setVoter] = useState(0)
+    const [proposalToAdd, setProposalToAdd] = useState()
+    const [currentStatus, setCurrentStatus] = useState(0)
 
     useEffect(() => {
         async function checkVoter() {
             try {
-                const voter = await contract.methods.getVoter(accounts[0] ).call({ from: accounts[0] });
+                const voter = await contract.methods.getVoter(accounts[0] ).call({ from: accounts[0] })
                 setVoter(voter)
                 setIsVoter(true)
             } catch(e) {
@@ -31,7 +29,6 @@ function UserBoard() {
         async function checkStatus() {
             const status = await contract.methods.workflowStatus().call();
             setCurrentStatus(Number(status))
-            //setCurrentStatus(status(3))
         }
         checkStatus();
         checkVoter();

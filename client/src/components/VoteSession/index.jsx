@@ -46,39 +46,40 @@ function VoteSession() {
 
     return (
         <>
-        <Heading size='sm' ml='6'>Vote Session</Heading>
-        <TableContainer>
-        <Table variant='striped'>
-            <Thead>
-            <Tr>
-                <Th>Id</Th>
-                <Th>Description</Th>
-                <Th></Th>
-            </Tr>
-            </Thead>
-            <Tbody>
-
+            <Heading size='sm' ml='6'>Vote Session</Heading>
+            <TableContainer>
+            <Table variant='striped'>
+                <Thead>
+                <Tr>
+                    <Th>Id</Th>
+                    <Th>Description</Th>
+                    <Th></Th>
+                </Tr>
+                </Thead>
+                <Tbody>
                 {proposals.map((item) => {
-            return (
-            <Tr key={item.id}>
-                <Td>{item.id}</Td>
-                <Td>{item.description}</Td>
-                <Td><Button 
-                        colorScheme='teal' 
-                        size='xs' 
-                        mt='2'
-                        onClick={() => handleVoteClick(item.id)}
-                    >
-                        Vote
-                    </Button>
-                </Td>
-            </Tr>
-            )
-        })}
-            </Tbody>
-        </Table>
-        </TableContainer>
+                    return (
+                    <Tr key={item.id}>
+                        <Td>{item.id}</Td>
+                        <Td>{item.description}</Td>
+                        <Td>
+                        <Button 
+                            colorScheme='teal' 
+                            size='xs' 
+                            mt='2'
+                            onClick={() => handleVoteClick(item.id)}
+                        >
+                            Vote
+                        </Button>
+                        </Td>
+                    </Tr>
+                    )
+                })}
+                </Tbody>
+            </Table>
+            </TableContainer>
         </>
+      
     );
 }
   

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../../contexts/EthContext"
-import { Heading, Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 import {
     Table,
@@ -41,7 +41,6 @@ function Voters() {
 
   return (
     <>
-      {/* <Heading size='sm' mt='8' ml='6'>Voters</Heading> */}
       <Accordion mt='4' allowToggle>
         <AccordionItem>
             <h2>

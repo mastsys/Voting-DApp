@@ -1,16 +1,20 @@
-function Link({ uri, text }) {
-  return <a href={uri} target="_blank" rel="noreferrer">{text}</a>;
-}
+import React from "react"
+import { Box, Heading } from "@chakra-ui/react"
 
 function Footer() {
   return (
-    <footer>
-      <h2>More resources</h2>
-      <Link uri={"https://trufflesuite.com"} text={"Truffle"} />
-      <Link uri={"https://reactjs.org"} text={"React"} />
-      <Link uri={"https://soliditylang.org"} text={"Solidity"} />
-      <Link uri={"https://ethereum.org"} text={"Ethereum"} />
-    </footer >
+    <Box
+      bg="gray.200"
+      p={4}
+      position="fixed"
+      bottom={0}
+      left={0}
+      width="100%"
+    >
+      <Heading size="sm" textAlign="center">
+        © 2023 VotinDApp 
+      </Heading>
+    </Box>
   );
 }
 

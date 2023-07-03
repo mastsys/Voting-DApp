@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { useEth } from "../../contexts/EthContext"
-import { Center, Card, CardBody, Input, Heading, Button, Box } from '@chakra-ui/react'
-import Proposals from "../Proposals"
+import { Center, Card, CardBody, Input, Heading, Button } from '@chakra-ui/react'
 import Results from "../Results"
 import Voters from "../Voters"
 
@@ -125,8 +124,6 @@ function AdminBoard() {
                     <CardBody>
                         <Heading size='md' mb='6' >Admin Board - Voting Session tallied</Heading>
                     </CardBody>
-                    {/* <Voters/> */}
-                    {/* <Proposals/> */}
                     <Results/>
                 </>
              )}
